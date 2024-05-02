@@ -4,7 +4,7 @@
 **/.vscode/
 **/.mypy_cache/
 **/.idea/
-**/pyenv.cfg
+**/pyvenv.cfg
 **/bin/
 **/include/
 **/lib/
@@ -17,7 +17,8 @@ lib64
 bin
 bin/
 include/
-pyenv.cfg
+include
+pyvenv.cfg
 
 # misc
 .vscode/
