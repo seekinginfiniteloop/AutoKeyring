@@ -1,0 +1,44 @@
+## AutoKeyring configuration file - ~/.config/AutoKeyring/config.toml
+
+# the path to the encrypted file containing the keyring password default is ~/.local/share/AutoKeyring/key.jwe
+# encrypted_path = '~/.local/share/AutoKeyring/key.jwe'
+
+use_salt = true # use a salt to encrypt the keyring password
+
+# the path to the salt file default is ~/.local/share/AutoKeyring/.saltymcsaltface
+# salt_path = '~/.local/share/AutoKeyring/.saltymcsaltface'
+
+[clevis_settings]
+binding = 'tpm2' # or 'tang', 'sss', or 'yubikey'
+
+## TPM2 settings -- all optional -- default for TPM2 binding uses no parameters. Below are clevis' default values:
+
+# tpm2.hash = 'sha256' # or 'sha1', 'sha384', 'sha512', 'sm3_256'
+
+# tpm2.algo = 'ecc' # or 'rsa', 'keyedhash', 'symcipher'
+
+# tpm2.pcr_bank = 'sha1' # or 'sha256'; the hash algo used for the PCR policy
+
+# tpm2.pcr_ids = []  # pcr_ids used to set the PCR policy (e.g. [0, 3, 7]); be very careful with what you choose... a small change could lock you out with some of these. My advice: no policy ([] or leave this commented out) is better than a bad policy.
+
+# tpm2.pcr_digest = [] # binary PCR hashes encoded in base64. By default, if there is a PCR policy set, and these are not present, the hash values will be read from the TPM2 chip. Example value: ['xy7J5svCtqlfM03d1lE5gdoA8MI']
+
+## Tang settings -- you MUST set the URL if using tang. All others optional.
+# tang.url = ['http://tang.example.com:PORT']
+# tang.thp = [''] # the thumprint of a trusted signed key
+# tang.adv = [''] # a filename containing a trusted advertisement -- you can only supply either the adv or adv_obj, not both
+# tang.adv_obj = '' # a trusted advertisement object (JSON) or array of objects -- you can only supply either the adv or adv_obj, not both
+
+## Yubikey settings -- you MUST set the slot if using yubikey. All others optional.
+# yubikey.slot = 2 # the slot number to use
+
+## SSS (Shamir's Shared Secret) settings:
+#   - you MUST set the threshold and pin_types if using sss. All others optional.
+#   - Config options will be derived from the config options for each type (i.e. set tpm2 settings if using tpm2 as a pin_type).
+#   - If using more than one pin_type, the threshold will be the number of shares required to unlock the key.
+#  - You may also bind to multiple Tang pins (no others supported) by providing multiple URLs in the tang.url list.
+
+# Note: One use for SSS is to provide redundancy in the case of lost keys. If you have a threshold of 1, for example, and 2 keys (bound pins), you can lose one of the keys and still unlock the key.
+
+# sss.threshold = 1 # the number of key shares required to unlock the key
+# sss.pin_types = ['tpm2', 'tang'] # the types of pins used to unlock the key

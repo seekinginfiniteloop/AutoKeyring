@@ -1,0 +1,12 @@
+[Unit]
+Description=A simple service to unlock gnome keyring
+After=gnome-keyring-daemon.service
+Before=keywipe.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/keyringlaunch.sh
+User=uniquemarlin
+
+[Install]
+WantedBy=graphical-session.target

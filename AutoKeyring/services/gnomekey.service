@@ -1,0 +1,12 @@
+[Unit] 
+Description=A simple service to unlock keyfile
+Before=keyunlock.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/decryptgnome.sh
+Restart=on-failure
+User=root
+
+[Install] 
+WantedBy=multi-user.target

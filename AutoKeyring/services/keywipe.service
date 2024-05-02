@@ -1,0 +1,12 @@
+[Unit]
+Description=A simple service to erase our clipboard
+After= keyunlock.service
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 30
+ExecStart=/home/uniquemarlin/.local/bin/keyringwipe.sh
+User=uniquemarlin
+
+[Install]
+WantedBy=graphical-session.target
