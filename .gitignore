@@ -12,6 +12,9 @@
 **/.venv
 lib/
 lib64/
+lib
+lib64
+bin
 bin/
 include/
 pyenv.cfg
