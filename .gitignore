@@ -10,6 +10,8 @@
 **/lib/
 **/lib64/
 **/.venv
+lib/
+lib64/
 bin/
 include/
 pyenv.cfg
@@ -54,8 +56,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
